@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const tasks = require("./routes/tasks");
 const port = 3000;
+require("dotenv").config();
+const connectDB = require("./db/connect");
+connectDB();
+
+// middleware
+app.use(express.static("./public"));
 app.use(express.json());
 
 app.get("/", (req, res) => {
