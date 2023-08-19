@@ -24,6 +24,18 @@ app.get("/pokemon", async (req, res) => {
   }
 });
 
+// "delete" route
+app.delete("/pokemon/:id", async (req, res) => {
+  try {
+    await Pokemon.findByIdAndDelete(req.params.id);
+    res.json({ message: "successfully deleted" });
+  } catch (err) {
+    console.log(err.message);
+    res.json({ error: err.message });
+  }
+});
+
+// "get" by id route
 app.get("/pokemon/:id", async (req, res) => {
   let pokemons;
 

@@ -6,22 +6,23 @@ function Details() {
   const [pokemon, setPokemon] = useState();
   const navigate = useNavigate();
   const params = useParams();
-  console.log("This is params in Details page:", params.id);
 
   useEffect(() => {
     async function getPokemonById() {
       const response = await axios.get(`/pokemon/${params.id}`);
-      console.log(response.data);
-
       setPokemon(response.data);
     }
     getPokemonById();
   }, []);
 
+  const handleClick = async () => {
+    const response = await axios.delete(`/pokemon/${params.id}`);
+    navigate("/");
+  };
   const loaded = () => {
     return (
       <>
-        <h1>{pokemon.name[0] + pokemon.name.slice(1)}</h1>
+        <h1>{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</h1>
         <img src={pokemon.img} />
       </>
     );
@@ -34,7 +35,11 @@ function Details() {
     <>
       {pokemon ? loaded() : notLoaded()}
       <br />
+      <br />
       <button onClick={() => navigate("/")}>Back</button>
+      <br />
+      <br />
+      <button onClick={handleClick}>Delete</button>
     </>
   );
 }

@@ -8,15 +8,13 @@ function Home() {
 
   const renderPokemons = pokemons.map(item => (
     <Link to={`/details/${item._id}`} key={item._id}>
-      <h2>{item.name}</h2>
+      <h2>{item.name[0].toUpperCase() + item.name.slice(1)}</h2>
     </Link>
   ));
 
   useEffect(() => {
     async function getPokemons() {
       const response = await axios.get("/pokemon");
-      console.log(response.data);
-
       setPokemons(response.data);
     }
     getPokemons();
