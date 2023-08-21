@@ -8,7 +8,7 @@ function Form() {
 
   async function addPokemon() {
     let pokemon = { name: input.toLowerCase() };
-    const response = await axios.post("/pokemon", pokemon);
+    const response = await axios.post("/api/pokemon", pokemon);
     const newPokemon = response.data;
     console.log("new pokemon in Form, addPokemon is:", newPokemon);
 

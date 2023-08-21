@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     async function getPokemons() {
-      const response = await axios.get("/pokemon");
+      const response = await axios.get("/api/pokemon");
       setPokemons(response.data);
     }
     getPokemons();
