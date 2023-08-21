@@ -20,6 +20,10 @@ function Home() {
     getPokemons();
   }, []);
 
+  if (!pokemons) {
+    return <div>Loading..</div>;
+  }
+
   return (
     <>
       <h1>Gotta Catch Them All</h1>

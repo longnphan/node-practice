@@ -16,24 +16,18 @@ function Details() {
   }, []);
 
   const handleClick = async () => {
-    const response = await axios.delete(`/api/pokemon/${params.id}`);
+    await axios.delete(`/api/pokemon/${params.id}`);
     navigate("/");
   };
-  const loaded = () => {
-    return (
-      <>
-        <h1>{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</h1>
-        <img src={pokemon.img} />
-      </>
-    );
-  };
 
-  const notLoaded = () => {
+  if (!pokemon) {
     return <h1>Loading...</h1>;
-  };
+  }
+
   return (
     <>
-      {pokemon ? loaded() : notLoaded()}
+      <h1>{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</h1>
+      <img src={pokemon.img} />
       <br />
       <br />
       <button onClick={() => navigate("/")}>Back</button>
