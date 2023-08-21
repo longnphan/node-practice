@@ -8,12 +8,8 @@ const app = express();
 const PORT = 3000;
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the Pokemon App!");
-});
-
 // "index" route
-app.get("/pokemon", async (req, res) => {
+app.get("/api/pokemon", async (req, res) => {
   try {
     pokemons = await Pokemon.find();
     console.log("lists of pokemons:", pokemons);
@@ -25,7 +21,7 @@ app.get("/pokemon", async (req, res) => {
 });
 
 // "delete" route
-app.delete("/pokemon/:id", async (req, res) => {
+app.delete("/api/pokemon/:id", async (req, res) => {
   try {
     await Pokemon.findByIdAndDelete(req.params.id);
     res.json({ message: "successfully deleted" });
@@ -36,7 +32,7 @@ app.delete("/pokemon/:id", async (req, res) => {
 });
 
 // "get" by id route
-app.get("/pokemon/:id", async (req, res) => {
+app.get("/api/pokemon/:id", async (req, res) => {
   let pokemons;
 
   try {
@@ -50,7 +46,7 @@ app.get("/pokemon/:id", async (req, res) => {
 });
 
 // "create" route
-app.post("/pokemon", async (req, res) => {
+app.post("/api/pokemon", async (req, res) => {
   const pokemonName = req.body.name;
   try {
     let pokemon = await Pokemon.create({

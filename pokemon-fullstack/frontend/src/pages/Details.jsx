@@ -9,14 +9,14 @@ function Details() {
 
   useEffect(() => {
     async function getPokemonById() {
-      const response = await axios.get(`/pokemon/${params.id}`);
+      const response = await axios.get(`/api/pokemon/${params.id}`);
       setPokemon(response.data);
     }
     getPokemonById();
   }, []);
 
   const handleClick = async () => {
-    const response = await axios.delete(`/pokemon/${params.id}`);
+    const response = await axios.delete(`/api/pokemon/${params.id}`);
     navigate("/");
   };
   const loaded = () => {
